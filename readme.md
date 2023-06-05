@@ -1,7 +1,7 @@
 # Ionic and Capacitor training
 
-Kevin Cunningham
-5th and 6th June 2023
+- Kevin Cunningham
+- 5th and 6th June 2023
 
 ## Timings 
 
