@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "@ionic/vue-router";
 import BirdsPage from "../views/BirdsPage.vue"
 import BirdDetailPage from "../views/BirdDetailPage.vue"
+import AddBirdPage from "../views/AddBirdPage.vue"
 const routes = [
   {
     path: "/",
@@ -15,6 +16,10 @@ const routes = [
     path: "/birds/:id",
     component: BirdDetailPage,
     name: "BirdDetail"
+  },
+  {
+    path: "/birds/add",
+    component: AddBirdPage
   }
 ];
 
