@@ -1,13 +1,18 @@
 <template>
 	<ion-list>
-		<ion-item v-for="bird in birds">
-			<span>></span> {{ bird.title }}
+		<ion-item v-for="bird in birds" :router-link="`/birds/${bird.id}`">
+			<ion-thumbnail slot="start">
+				<ion-img :src="bird.image" alt=""></ion-img>
+			</ion-thumbnail>
+			<ion-label>
+				{{ bird.title }}
+			</ion-label>
 		</ion-item>
 	</ion-list>
 </template>
 
 <script setup>
-import {IonList, IonItem } from "@ionic/vue"
+import {IonList, IonItem, IonThumbnail, IonImg, IonLabel } from "@ionic/vue"
 defineProps({
 	birds: {
 		type: Array,
@@ -17,8 +22,6 @@ defineProps({
 </script>
 
 <style scoped>
-ion-item {
-	--color: blue;
-}
+
 
 </style>
