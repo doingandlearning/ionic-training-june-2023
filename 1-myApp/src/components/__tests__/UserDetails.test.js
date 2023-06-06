@@ -1,4 +1,4 @@
-import { mount, shallowMount, flushPromises } from "@vue/test-utils";
+import { mount, shallowMount, flushPromises } from "	";
 import UserDetails from "../UserDetails.vue"
 import { beforeEach, describe, expect, test, } from 'vitest'
 import axios from 'axios'
