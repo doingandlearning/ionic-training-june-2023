@@ -24,6 +24,7 @@
 - We'll explore Vue's composition API
 - We'll explore components and state management
 - We'll begin to explore the native layer, both to interact with the camera and to persist storage
+- Firebase, Geolocation
 
 ## More from Ionic
 

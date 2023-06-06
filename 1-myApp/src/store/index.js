@@ -1,4 +1,14 @@
 import { createStore } from 'vuex'
+import { Preferences } from '@capacitor/preferences';
+
+const BIRD_STORAGE = 'birds'
+
+// const cachePhotos = (data) => {
+// 	Preferences.set({
+// 		key: BIRD_STORAGE,
+// 		value: data
+// 	})
+// }
 
 const store = createStore({
 	state() {
@@ -36,18 +46,40 @@ const store = createStore({
 		}
 	},
 	actions: {
-		addBird(context, birdData) {
-			context.commit("addBird", birdData)
-		}
-	},
-	mutations: {
-		addBird(state, birdData) {
+		async addBird(context, birdData) {
 			const newBird = {
 				id: new Date().toISOString(),
 				...birdData
 			}
 
+			context.commit("addBird", newBird)
+			await Preferences.set({
+				key: BIRD_STORAGE,
+				value: JSON.stringify(context.state.birds)
+			})
+
+		},
+		async loadBirds(context) {
+			const birds = await Preferences.get({ key: BIRD_STORAGE })
+			if (birds.value) {
+				context.commit('setBirds', JSON.parse(birds.value))
+			}
+		},
+		async deleteBird(context, id) {
+			const newState = context.state.birds.filter(bird => bird.id === id)
+			context.commit("setBirds", newState)
+			await Preferences.set({
+				key: BIRD_STORAGE,
+				value: JSON.stringify(context.state.birds)
+			})
+		}
+	},
+	mutations: {
+		addBird(state, newBird) {
 			state.birds.unshift(newBird)
+		},
+		setBirds(state, birdData) {
+			state.birds = birdData
 		}
 	}
 })
